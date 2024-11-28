@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
 
-      <h1>podcast generator</h1>
+      <h3>podcast generator</h3>
     </div>
          
   )
