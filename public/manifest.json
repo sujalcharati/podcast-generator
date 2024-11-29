@@ -3,7 +3,7 @@
     "name": "Podcast Generator",
     "version": "1.0",
     "description": "A Chrome extension built for Podcast.",
-    "permissions": ["activeTab", "scripting","sidePanel"],
+    "permissions": ["activeTab", "scripting","sidePanel","tabs"],
     "host_permissions": ["https://*/*", "http://*/*"],
     
     "action": {
