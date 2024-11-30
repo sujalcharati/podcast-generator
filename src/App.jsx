@@ -1,20 +1,30 @@
 
+import { useState } from 'react'
 import './App.css'
 
 function App() {
-async  function  generateAudio(){
-  const res = await fetch(" https://dog.ceo/api/breeds/list/all");
-  const data = await res.json();
-  console.log(data)
-  return data ;
+  const[message,setMessage]= useState(" ");
+
+  async function generateAudio() {
+    try {
+      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      setMessage(`Current tab URL is: ${tab.url}`);
+    } catch (error) {
+      console.error('Error fetching tab URL:', error);
+      setMessage('Failed to get the current tab URL.');
+    }
   }
 
   return (
     <div>
 
       <h3> Do you want to generate a podcast for this article ? </h3>
-      <button onClick={generateAudio}>click here</button>
-      
+      <button onClick={generateAudio}>Generate</button>
+
+    <div>
+
+      {message}
+    </div>
     </div>
          
   )
