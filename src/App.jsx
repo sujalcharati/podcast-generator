@@ -2,6 +2,8 @@
 // import { useState } from 'react';
 // import './App.css';
 
+import { useState } from "react";
+
 // function App() {
 //   const [message, setMessage] = useState(" ");
 //   const [articleText, setArticleText] = useState("");
@@ -225,15 +227,68 @@
 // export default App;
 
 function App(){
+    const [message, setMessage] = useState(" ");
+    const [text,setText]= useState('');
+    // const [audioUrl, setAudioUrl] = useState(null);
 
-    async  function getMusic(){
-         const res = await fetch(" ");
-    }
+    async function generatePodcast() {
+            try {
+              // Get the current active tab
+              const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+        
+              // Send a message to the content script to extract text
+              chrome.tabs.sendMessage(tab.id, { type: "EXTRACT_TEXT" }, (response) => {
+                if (chrome.runtime.lastError) {
+                  console.error("Error sending message to content script:", chrome.runtime.lastError.message);
+                  setMessage("Failed to extract text from the page.");
+                } else {
+                  setMessage("Text extracted successfully!");
+                  setText(response.text); // Save extracted text
+                }
+              });
+
+              const response = await fetch('http://localhost:5000/generate-podcast', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text }),
+              });
+        
+              if (!response.ok) {
+                throw new Error('Failed to generate podcast');
+              }
+
+            //   const blob = await response.blob();
+            //   const url = URL.createObjectURL(blob);
+            //   setAudioUrl(url);
+
+            } 
+            catch (error) {
+              console.error("Error fetching tab URL or sending message:", error);
+              setMessage("An error occurred.");
+            }
+          }
+
     return(
         <div>
- <button onClick={ getpodcast }>generate podcast</button>
-        </div>
-    )
-}
+        {/* <textarea
+          placeholder="Enter text for the podcast"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        /> */}
+
+        <button onClick={generatePodcast}>Generate Podcast</button>
+        
+
+        {/* {audiourl && (
+          <audio controls>
+            <source src={audioUrl} type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        )} */}
+        {text}
+      </div>
+    );
+  }
+  
 
 export default App;
