@@ -228,7 +228,7 @@ import { useState } from "react";
 
 function App(){
     const [message, setMessage] = useState(" ");
-    const [text,setText]= useState('');
+    const [article,setArticle]= useState('');
     // const [audioUrl, setAudioUrl] = useState(null);
 
     async function generatePodcast() {
@@ -243,14 +243,14 @@ function App(){
                   setMessage("Failed to extract text from the page.");
                 } else {
                   setMessage("Text extracted successfully!");
-                  setText(response.text); // Save extracted text
+                  setArticle(response.text); // Save extracted text
                 }
               });
 
               const response = await fetch('http://localhost:5000/generate-podcast', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text }),
+                body: JSON.stringify({ article }),
               });
         
               if (!response.ok) {
@@ -285,10 +285,11 @@ function App(){
             Your browser does not support the audio element.
           </audio>
         )} */}
-        {text}
+        {article}
       </div>
     );
   }
+  
   
 
 export default App;
