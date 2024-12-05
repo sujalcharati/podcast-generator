@@ -6,10 +6,16 @@ import re
 import requests
 import shutil
 import argparse
+from dotenv import load_dotenv
+load_dotenv()
+
 from google.cloud import texttospeech, texttospeech_v1beta1
 from pydub import AudioSegment
 from vertexai.generative_models import GenerativeModel, GenerationConfig
+
+
 # from dotenv import load_dotenv
+
 
 # Load environment variables from .env file
 # load_dotenv()
