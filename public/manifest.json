@@ -3,8 +3,8 @@
     "name": "Podcast Generator",
     "version": "1.0",
     "description": "A Chrome extension built for Podcast.",
-    "permissions": ["activeTab", "scripting","sidePanel","tabs","http://localhost:5000/*"],
-    "host_permissions": ["https://*/*", "http://*/*"],
+    "permissions": ["activeTab", "scripting","sidePanel","tabs"],
+    "host_permissions": ["https://*/*", "http://*/*","http://localhost:5000/*"],
     
     "action": {
       "default_popup": "index.html"
