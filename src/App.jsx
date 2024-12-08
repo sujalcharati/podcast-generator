@@ -268,24 +268,36 @@ function App(){
             }
           }
 
-    return(
-        <div>
-        {/* <textarea
-          placeholder="Enter text for the podcast"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        /> */}
-
-        <button onClick={generatePodcast}>Generate Podcast</button>
-        
-
-        {/* {audiourl && (
-          <audio controls>
-            <source src={audioUrl} type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-        )} */}
-        {article}
+    return (
+      <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <button
+          onClick={generatePodcast}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: '#007BFF',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            fontSize: '16px',
+          }}
+        >
+          Generate Podcast
+        </button>
+        <div style={{ marginTop: '20px', color: '#555' }}>
+          <p>{message}</p>
+          <div
+            style={{
+              whiteSpace: 'pre-wrap',
+              backgroundColor: '#f9f9f9',
+              padding: '10px',
+              borderRadius: '5px',
+              border: '1px solid #eee',
+            }}
+          >
+            {article}
+          </div>
+        </div>
       </div>
     );
   }
