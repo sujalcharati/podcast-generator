@@ -276,9 +276,9 @@ def generate_audio(conversation):
 
 def main():
     # Read the article from the file
-    with open('sample.txt', 'r') as file:
-        global article
-        article = file.read()
+    # with open('sample.txt', 'r') as file:
+    #     global article
+    #     article = file.read()
     
     # Generate conversation and audio
     conversation = generate_conversation()
