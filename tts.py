@@ -231,6 +231,11 @@ def generate_conversation():
         "gemini-1.5-flash-002",
         system_instruction=[system_prompt]
     )
+
+    # even added this leading to changed 2
+    with open('sample.txt', 'r') as file:
+        article = file.read()
+
     responses = model.generate_content(
         [article],
         generation_config=generation_config,
