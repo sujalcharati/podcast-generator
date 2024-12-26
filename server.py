@@ -7,7 +7,8 @@ app = Flask(__name__)
 def generate_podcast():
     # Get the text from the request
     data = request.json
-    article = data.get('text', '')
+    article = data.get('article', '')
+    #changed text to artcile
 
     if not article:
         return jsonify({'error': 'No text provided'}), 400
