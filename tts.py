@@ -225,7 +225,7 @@ def calculate_cost(prompt_token_count, candidates_token_count):
     total_cost = (total_chars / 1000) * cost_per_1k_chars
     return total_cost
 
-def generate_conversation():
+def generate_conversation(article):#change 3
     vertexai.init(project="noted-point-443218-a3", location="us-central1")
     model = GenerativeModel(
         "gemini-1.5-flash-002",
@@ -233,9 +233,6 @@ def generate_conversation():
     )
 
     # even added this leading to changed 2
-    with open('sample.txt', 'r') as file:
-        article = file.read()
-
     responses = model.generate_content(
         [article],
         generation_config=generation_config,
